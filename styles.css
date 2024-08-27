@@ -1,0 +1,160 @@
+:root{
+    --primary-color: #3944BC;
+    --primary-color-light:#7580F8;
+    --secondary-color: #ffffff;
+    --tertiary-color: #938BB7;
+    --grey-color-primary:#E3DBFF;
+    --Sans-font: "Poppins", sans-serif;
+    --body-background: #EBEBEB;
+
+
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--Sans-font);
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.page-set{
+    margin: 0px 20px;
+    padding: 0px 10px
+}
+
+.page-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color-light);
+    padding:  10px 20px;
+    color: var(--secondary-color);
+}
+
+.nav-links{
+    display: flex;
+    text-align: center;
+    gap: 15px;
+}
+
+.nav-links-items:hover {
+    background-color: var(--secondary-color); /* Change this color to whatever you like */
+}
+
+.nav-links-items a {
+    text-decoration: none;
+    /* margin-left: 15px; */
+}
+
+
+.intro{
+    display: grid;
+    text-align: center;
+}
+
+
+.profile_img{
+    border-radius: 20px;
+}
+
+.bio_content{
+    margin-left: 30px;
+    text-align: justify;
+}
+
+div.bio_content div {
+    margin-top: 10px;
+}
+
+.text-align-center{
+    text-align: center;
+}
+
+.bold-content{
+    font-weight: bold;
+}
+
+.tools-section{
+    background-color: var(--grey-color-primary);
+    padding: 0;
+    margin: 0;
+}
+
+.section-div{
+    margin-top: 10px;
+}
+
+.section-header{
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+.section-wrapper{
+    margin: 10px 30px 10px 50px;
+    padding: 20px; 
+}
+
+.section-wrapper-head{
+    margin: 10px 0px 5px 40px;
+    /* padding: 0px;  */
+}
+
+div.section-div ul{
+    list-style-type: none;
+}
+
+div.section-div ul li::before{
+    content: "- ";
+    margin-right: 8px;
+}
+
+div.section-div ul li{
+    margin-bottom: 10px;
+}
+
+
+
+
+.justify-content{
+    text-align: justify;
+}
+
+.no-margin-top{
+    margin-top: 0px;
+}
+
+.no-margin-bottom{
+    margin-bottom: 0px;
+}
+
+footer{
+    background-color: var(--body-background);
+    text-align: center;
+    padding: 10px 0px;
+}
+@media screen and (min-width: 768px) {
+    .intro{
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+    }
+
+    .bio_content{
+        margin-left: 70px;
+    }
+
+    div.bio_content div {
+        margin-top: 10px;
+    }
+
+    .page-nav{
+        padding-left: 50px;
+    }
+    
+}
