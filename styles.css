@@ -43,7 +43,7 @@ body{
 }
 
 .nav-links-items:hover {
-    background-color: var(--secondary-color); /* Change this color to whatever you like */
+    background-color: var(--secondary-color);
 }
 
 .nav-links-items a {
@@ -164,8 +164,8 @@ footer{
     border: 1px solid transparent;
     box-sizing: border-box;
     background-color: #f5f5ff;
-    outline: none; /* Removes the default outline */
-    transition: border 0.3s ease; /* Smooth transition for border changes */
+    outline: none; 
+    transition: border 0.3s ease; 
 }
 
 .form-group.full-width {
@@ -183,8 +183,8 @@ footer{
 .form-group select:hover,
 .form-group input:focus,
 .form-group select:focus {
-    border: 1px solid #007bff; /* Adds blue border on hover and focus */
-    outline: none; /* Ensures no default outline appears */
+    border: 1px solid #007bff;
+    outline: none; 
 }
 
 
@@ -251,7 +251,7 @@ button:hover {
 
 .left-side-container {
    background-color: var(--form-background);
-   width: 50%; /* Adjust width as necessary */
+   width: 50%; 
    display: flex;
    justify-content: center;
    box-sizing: border-box;
@@ -260,7 +260,7 @@ button:hover {
 .left-side-inner{
     text-align: center;
     width: 100%;
-    max-width: 400px; /* Ensures the inner content doesn't stretch too much */
+    max-width: 400px;
     padding: 0px;
     box-sizing: border-box;
     margin-top: 40px;
@@ -270,7 +270,7 @@ button:hover {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto; /* Center the image */
+    margin: 0 auto; 
 }
 
 .left-side-inner h2 {
