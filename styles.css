@@ -43,14 +43,21 @@ body{
 }
 
 .nav-links-items:hover {
-    background-color: var(--secondary-color);
+    color: #0056b3;
+    transition: ;
 }
 
 .nav-links-items a {
     text-decoration: none;
+    color: var(--secondary-color);
     /* margin-left: 15px; */
 }
 
+
+.nav-link.active {
+    padding-bottom: 5px ;
+    border-bottom: 3px solid var(--secondary-color); 
+}
 
 .intro{
     display: grid;
@@ -145,7 +152,7 @@ footer{
 }
 
 .form-group input[type="date"] {
-    width: 100%; /* Ensure it takes up full width of the container */
+    width: 100%;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid transparent;
@@ -157,7 +164,6 @@ footer{
 .form-group-duo{
     display: flex;
     justify-content: space-between;
-    flex: 1;
 }
 
 .form-group label {
@@ -189,7 +195,6 @@ footer{
     width: 100%;
 }
 
-
 .form-group input:hover,
 .form-group select:hover,
 .form-group input:focus,
@@ -197,7 +202,6 @@ footer{
     border: 1px solid #007bff;
     outline: none; 
 }
-
 
 button {
     width: 100%;
@@ -236,7 +240,6 @@ button:hover {
     color: #007bff;
     text-decoration: none;
 }
-
 
 .login-link {
     text-align: center;
@@ -311,6 +314,117 @@ button:hover {
 }
 
 /* Table Specific format */
+
+.table-container{
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Poppins", sans-serif;
+    margin: 20px 0px;
+}
+
+caption {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #3944BC;
+    text-align: center;
+}
+
+.caption-subtext {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 5px;
+    color: #777;
+}
+
+.caption-subtext a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+caption-subtext a:hover {
+    text-decoration: underline;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: #3944BC;
+    color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #d9e1f2;
+}
+
+/* Specific column styling */
+th {
+    font-weight: 600;
+    text-align: left;
+}
+
+th[colspan="4"] {
+    text-align: center;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        background-color: #3944BC;
+        color: #fff;
+        display: block;
+        padding: 10px;
+    }
+
+    td {
+        padding: 10px;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        background-color: #f2f2f2;
+        border-right: 1px solid #ddd;
+    }
+
+    tbody tr {
+        margin-bottom: 20px;
+    }
+
+    caption {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+
+
+
 @media screen and (min-width: 768px) {
     .intro{
         display: flex;
@@ -335,20 +449,20 @@ button:hover {
 
 @media screen and (max-width: 1080px) {
     .right-side {
-        width: 100%; /* Full width form */
-        padding: 0 20px; /* Adjust padding for smaller screens */
+        width: 100%;
+        padding: 0 20px;
     }
 
     .left-side-container {
-        display: none; /* Hide the image on screens smaller than 1024px */
+        display: none; 
     }
 
     .form-group-duo {
         flex-direction: column;
-        align-items: stretch; /* Ensures full-width inputs */
+        align-items: stretch; 
     }
 
     .form-group-duo .form-group {
-        width: 100%; /* Full width for each input */
+        width: 100%; 
     }
 }
