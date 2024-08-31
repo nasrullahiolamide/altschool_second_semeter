@@ -144,17 +144,28 @@ footer{
     flex-direction: column;
 }
 
+.form-group input[type="date"] {
+    width: 100%; /* Ensure it takes up full width of the container */
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background-color: #f5f5ff;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
 .form-group-duo{
     display: flex;
-    width: 100%;
     justify-content: space-between;
+    flex: 1;
 }
 
 .form-group label {
-    font-size: 14px;
+    font-size: 12px;
     color: #333;
     margin-bottom: 5px;
 }
+
 
 .form-group input,
 .form-group select {
@@ -298,6 +309,8 @@ button:hover {
     color: #777;
     margin-bottom: 20px;
 }
+
+/* Table Specific format */
 @media screen and (min-width: 768px) {
     .intro{
         display: flex;
@@ -317,4 +330,25 @@ button:hover {
         padding-left: 50px;
     }
     
+}
+
+
+@media screen and (max-width: 1080px) {
+    .right-side {
+        width: 100%; /* Full width form */
+        padding: 0 20px; /* Adjust padding for smaller screens */
+    }
+
+    .left-side-container {
+        display: none; /* Hide the image on screens smaller than 1024px */
+    }
+
+    .form-group-duo {
+        flex-direction: column;
+        align-items: stretch; /* Ensures full-width inputs */
+    }
+
+    .form-group-duo .form-group {
+        width: 100%; /* Full width for each input */
+    }
 }
