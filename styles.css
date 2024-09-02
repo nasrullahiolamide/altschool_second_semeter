@@ -455,7 +455,7 @@ picture.media img {
 
 video {
     max-width: 100%;
-    height: auto; /* Ensures the video maintains its aspect ratio */
+    height: auto;
 }
 
 .border-around{
