@@ -422,8 +422,47 @@ th[colspan="4"] {
     }
 }
 
+/* media specific styles */
+.media-page{
+    padding: 20px
+}
+
+.more-padding{
+    margin-bottom: 20px;
+}
+
+.margin-top{
+    margin-top: 10px;
+}
+
+picture {
+    display: flex;
+    justify-content: center;
+}
 
 
+picture.media img {
+    max-width: 50%;
+    height: auto;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; 
+}
+
+video {
+    max-width: 100%;
+    height: auto; /* Ensures the video maintains its aspect ratio */
+}
+
+.border-around{
+    border: 1px solid var(--body-background);
+    background-color: #f4f4f4;
+
+}
 
 @media screen and (min-width: 768px) {
     .intro{
