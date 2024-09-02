@@ -1,8 +1,10 @@
-Here's a sample `README.md` file that will render well on GitHub for your assignment:
+This is the project for the completion of first Semester at AltSchool Africa; Basics of HTML, CSS and JS. Looking forward to learn about cloud technologies in Second Semester.
+
+- Below is the details for the project/assignment
 
 ---
 
-# Assignment 1
+# Project 1
 
 Build two web pages:
 
@@ -15,7 +17,7 @@ Build two web pages:
    - **Files**: `form.html`
 
 
-# Assignment 2
+# Project 2
 
 Build additional two web pages:
 
@@ -27,6 +29,5 @@ Build additional two web pages:
 
    - **Files**: `media.html`
 
+**This project is hosted on netlify at https://primokaratu.netlify.app/**
 ---
-
-**This project is hosted on netlify at https://primokaratu.netlify.app/ **
