@@ -1,123 +1,118 @@
-# README: AltSchool Africa Karatu 24 Cloud Engineering Second Semester Exam Project 
+```markdown
+# HTML Landing Page Deployment on Nginx
 
-## Project Title
-Welcome to "my" Landing Page
-
-## Description
-This project involves setting up a Linux server, configuring a web server (Nginx), and deploying a simple HTML landing page. The purpose of this project is to demonstrate proficiency in server provisioning, configuration, and application deployment.
+This project demonstrates how to deploy a simple HTML landing page on a Linux server using Nginx and a self-signed SSL certificate for HTTPS connection. It is part of my AltSchool Africa second-semester Cloud Engineering exam.
 
 ---
 
-## Steps to Provision the Server and Deploy the Application
+## Project Overview
 
-### 1. Provisioning the Server
-#### Platform Used:
-AWS EC2 (Amazon Web Services Elastic Compute Cloud)
+- **Project Title**: Welcome to [Your Name] Landing Page
+- **Description**: 
+  A basic landing page showcasing HTML and CSS skills. It includes:
+  - My name
+  - Project description
+  - My full biography
 
-#### Steps:
-1. **Launch an EC2 Instance**:
-   - Logged into the AWS Management Console.
-   - Navigated to EC2 and clicked on "Launch Instance."
-   - Selected the **Ubuntu Server 22.04 LTS** as the Amazon Machine Image (AMI).
-   - Chose an instance type (t2.micro) suitable for this project.
-   - Configured the security group to allow HTTP (port 80) and SSH (port 22) traffic.
-   - Created and downloaded a key pair for SSH access.
-   - Launched the instance and noted the public IP address.
-
-2. **Connect to the Server**:
-   - Used the terminal to SSH into the server:
-     ```bash
-     ssh -i "server-key.pem" ubuntu@[Public_IP_Address]
-     ```
-   - Updated the package manager and installed essential tools:
-     ```bash
-     sudo apt update && sudo apt upgrade -y
-     sudo apt install curl -y
-     ```
+- **Purpose**: Provision a Linux server, configure a web server (Nginx), and serve the landing page over HTTP and HTTPS.
 
 ---
 
-### 2. Web Server Setup
-#### Installing Nginx:
-1. Installed Nginx on the server:
-   ```bash
-   sudo apt install nginx -y
-   ```
+## Deployment Steps
 
-2. Enabled and started the Nginx service:
-   ```bash
-   sudo systemctl start nginx
-   sudo systemctl enable nginx
-   ```
+### 1. Provision the Server
+- **Platform**: AWS EC2 (free tier)
+- **OS**: Ubuntu 20.04
+- **Setup Commands**:
+  ```bash
+  sudo apt update && sudo apt upgrade -y
+  ```
 
-3. Confirmed that Nginx was running by accessing the server's public IP address in a browser:
-   - URL: `http://[Public_IP_Address]`
+### 2. Install Nginx
+- Install Nginx:
+  ```bash
+  sudo apt install nginx -y
+  ```
 
----
+### 3. Created a github repo for the project and pushed my webfiles into the repo. I pulled the repo into my virtual machine
 
-### 3. Deploying the HTML Page
-1. **Created the HTML Page:**
-   - Developed a simple HTML page containing the following:
-     - My name.
-     - A project title: "Welcome to [Your Name] Landing Page."
-     - A brief description of the project.
-     - My full bio.
 
-   - Saved the file as `index.html` on my local machine.
 
-2. **Transferred the HTML File to the Server:**
-   - Used SCP (Secure Copy) to transfer the HTML file to the server:
-     ```bash
-     scp -i "server-key.pem" index.html ubuntu@[Public_IP_Address]:/tmp
-     ```
+### 4. Generated an SSL (Self-Signed) for my ip address
+- Generated a self-signed SSL certificate:
+  ```bash
+  sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+      -keyout /home/ubuntu/selfsigned.key \
+      -out /home/ubuntu/selfsigned.crt
+  ```
 
-3. **Moved the HTML File to the Web Server Directory:**
-   - Logged into the server via SSH and moved the file:
-     ```bash
-     sudo mv /tmp/index.html /var/www/html/index.html
-     ```
 
-4. **Tested the Deployment:**
-   - Accessed the HTML page in the browser using the server's public IP:
-     - URL: `http://[Public_IP_Address]`
+### 5. Configured Nginx to serve my directory instead of /var/www/ and also includes the SSL configuration into it. I also ensure to update the permissions on the folder
+- Update the default Nginx configuration:
+  ```nginx
+  server {
+      listen 80 default_server;
+      listen [::]:80 default_server;
 
----
+      return 301 https://$host$request_uri; # Redirect HTTP to HTTPS
+  }
 
-### 4. Networking Configuration
-1. **Security Group Rules:**
-   - Configured the EC2 instance security group to allow:
-     - HTTP (port 80): Enables web traffic.
-     - SSH (port 22): Enables secure remote access.
+  server {
+      listen 443 ssl default_server;
+      listen [::]:443 ssl default_server;
 
-2. **Firewall:**
-   - Verified that the UFW (Uncomplicated Firewall) was inactive (optional):
-     ```bash
-     sudo ufw status
-     ```
-   - If active, allowed HTTP traffic:
-     ```bash
-     sudo ufw allow 'Nginx HTTP'
-     ```
+      ssl_certificate /home/ubuntu/selfsigned.crt;
+      ssl_certificate_key /home/ubuntu/selfsigned.key;
 
----
+      root /home/ubuntu/webfile;
+      index index.html;
 
-## Public IP Address
-- **URL to Access the Page:** `http://[Public_IP_Address]`
+      server_name _;
 
----
+      location / {
+          try_files $uri $uri/ =404;
+      }
+  }
+  ```
+- Test the configuration:
+  ```bash
+  sudo nginx -t
+  sudo systemctl reload nginx
+  ```
 
-## Challenges and Solutions
-1. **Firewall Blocked HTTP Traffic:**
-   - Ensured that port 80 was open in the security group and firewall.
 
-2. **HTML File Permissions:**
-   - Verified that the `index.html` file had the correct permissions to be served by Nginx:
-     ```bash
-     sudo chmod 644 /var/www/html/index.html
-     ```
+### 6. Configure Firewall
+- Allow HTTP and HTTPS traffic:
+  ```bash
+  sudo ufw allow 'Nginx Full'
+  sudo ufw enable
+  ```
 
 ---
 
-## Conclusion
-This project successfully demonstrates the process of server provisioning, web server configuration, and deploying a live HTML landing page accessible to any browser. It highlights my ability to set up and manage a Linux server environment efficiently.
+## Access the Landing Page
+
+- **URL**: [https://51.20.86.34>](https://51.20.86.34)
+- Note: You might encounter a browser warning due to the self-signed SSL certificate.
+
+---
+
+
+
+
+![Screenshot](webhome.png "Homepage Screengrab")
+
+
+## Author
+
+- **Name**: Nasrullahi SHITTU
+- **Program**: AltSchool Africa Cloud Engineering, Second Semester
+- **Contact**: nasrullahiolamide3011@gmail.com
+
+---
+
+### Acknowledgments
+
+This project was completed as part of my coursework at AltSchool Africa, demonstrating server provisioning, web server configuration, and SSL setup.
+```
 
