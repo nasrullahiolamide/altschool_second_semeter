@@ -1,4 +1,4 @@
-```markdown
+```
 ### HTML Landing Page Deployment on Nginx
 
 This project demonstrates how to deploy a simple HTML landing page on a Linux server using Nginx and a self-signed SSL certificate for HTTPS connection. It is part of my AltSchool Africa second-semester Cloud Engineering exam.
@@ -16,7 +16,7 @@ This project demonstrates how to deploy a simple HTML landing page on a Linux se
 
 - **Purpose**: Provision a Linux server, configure a web server (Nginx), and serve the landing page over HTTP and HTTPS.
 
----
+
 
 ## Deployment Steps
 
