@@ -1,33 +1,123 @@
-This is the project for the completion of first Semester at AltSchool Africa; Basics of HTML, CSS and JS. Looking forward to learn about cloud technologies in Second Semester.
+# README: AltSchool Africa Karatu 24 Cloud Engineering Second Semester Exam Project 
 
-- Below is the details for the project/assignment
+## Project Title
+Welcome to "my" Landing Page
+
+## Description
+This project involves setting up a Linux server, configuring a web server (Nginx), and deploying a simple HTML landing page. The purpose of this project is to demonstrate proficiency in server provisioning, configuration, and application deployment.
 
 ---
 
-# Project 1
+## Steps to Provision the Server and Deploy the Application
 
-Build two web pages:
+### 1. Provisioning the Server
+#### Platform Used:
+AWS EC2 (Amazon Web Services Elastic Compute Cloud)
 
-1. **Page 1**: This page will be about you, including your ALT SCHOOL ID, biography, and any relevant information, along with the reason why you joined AltSchool. Also, include your goals for the School of Engineering program. Use a fragment identifier and build a feature to scroll to the top with a fragment identifier.
+#### Steps:
+1. **Launch an EC2 Instance**:
+   - Logged into the AWS Management Console.
+   - Navigated to EC2 and clicked on "Launch Instance."
+   - Selected the **Ubuntu Server 22.04 LTS** as the Amazon Machine Image (AMI).
+   - Chose an instance type (t2.micro) suitable for this project.
+   - Configured the security group to allow HTTP (port 80) and SSH (port 22) traffic.
+   - Created and downloaded a key pair for SSH access.
+   - Launched the instance and noted the public IP address.
 
-   - **Files**: `index.html`
+2. **Connect to the Server**:
+   - Used the terminal to SSH into the server:
+     ```bash
+     ssh -i "server-key.pem" ubuntu@[Public_IP_Address]
+     ```
+   - Updated the package manager and installed essential tools:
+     ```bash
+     sudo apt update && sudo apt upgrade -y
+     sudo apt install curl -y
+     ```
 
-2. **Page 2**: This is a form that is a replica of the ALT SCHOOL application form. It should link both pages together using global navigation, and the page must be accessible with proper, relevant semantic HTML tags.
-
-   - **Files**: `form.html`
-
-
-# Project 2
-
-Build additional two web pages:
-
-1. **Page 1**: This will be a table about all the courses and schools existing at AltSchool Africa. It should include the School of Engineering (Frontend Engineering, Backend Engineering, Cloud Engineering, Cybersecurity), School of Product (Product Design, Marketing, Management), and School of Data (Data Analysis, Data Science, Data Engineering).
-
-   - **Files**: `table.html`
-
-2. **Page 2**: Use all the media elements existing in HTML to create a powerful message about yourself. Specifically, use the `<picture>` element with more than three sources, with responsiveness for mobile, tablet, and laptop.
-
-   - **Files**: `media.html`
-
-**This project is hosted on netlify at https://primokaratu.netlify.app/**
 ---
+
+### 2. Web Server Setup
+#### Installing Nginx:
+1. Installed Nginx on the server:
+   ```bash
+   sudo apt install nginx -y
+   ```
+
+2. Enabled and started the Nginx service:
+   ```bash
+   sudo systemctl start nginx
+   sudo systemctl enable nginx
+   ```
+
+3. Confirmed that Nginx was running by accessing the server's public IP address in a browser:
+   - URL: `http://[Public_IP_Address]`
+
+---
+
+### 3. Deploying the HTML Page
+1. **Created the HTML Page:**
+   - Developed a simple HTML page containing the following:
+     - My name.
+     - A project title: "Welcome to [Your Name] Landing Page."
+     - A brief description of the project.
+     - My full bio.
+
+   - Saved the file as `index.html` on my local machine.
+
+2. **Transferred the HTML File to the Server:**
+   - Used SCP (Secure Copy) to transfer the HTML file to the server:
+     ```bash
+     scp -i "server-key.pem" index.html ubuntu@[Public_IP_Address]:/tmp
+     ```
+
+3. **Moved the HTML File to the Web Server Directory:**
+   - Logged into the server via SSH and moved the file:
+     ```bash
+     sudo mv /tmp/index.html /var/www/html/index.html
+     ```
+
+4. **Tested the Deployment:**
+   - Accessed the HTML page in the browser using the server's public IP:
+     - URL: `http://[Public_IP_Address]`
+
+---
+
+### 4. Networking Configuration
+1. **Security Group Rules:**
+   - Configured the EC2 instance security group to allow:
+     - HTTP (port 80): Enables web traffic.
+     - SSH (port 22): Enables secure remote access.
+
+2. **Firewall:**
+   - Verified that the UFW (Uncomplicated Firewall) was inactive (optional):
+     ```bash
+     sudo ufw status
+     ```
+   - If active, allowed HTTP traffic:
+     ```bash
+     sudo ufw allow 'Nginx HTTP'
+     ```
+
+---
+
+## Public IP Address
+- **URL to Access the Page:** `http://[Public_IP_Address]`
+
+---
+
+## Challenges and Solutions
+1. **Firewall Blocked HTTP Traffic:**
+   - Ensured that port 80 was open in the security group and firewall.
+
+2. **HTML File Permissions:**
+   - Verified that the `index.html` file had the correct permissions to be served by Nginx:
+     ```bash
+     sudo chmod 644 /var/www/html/index.html
+     ```
+
+---
+
+## Conclusion
+This project successfully demonstrates the process of server provisioning, web server configuration, and deploying a live HTML landing page accessible to any browser. It highlights my ability to set up and manage a Linux server environment efficiently.
+
