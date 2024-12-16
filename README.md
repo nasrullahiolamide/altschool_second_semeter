@@ -6,7 +6,7 @@ This project demonstrates how to deploy a simple HTML landing page on a Linux se
 
 ## Project Overview
 
-- **Project Title**: Welcome to [Your Name] Landing Page
+- **Project Title**: Welcome to Primo's Landing Page
 - **Description**: 
   A basic landing page showcasing HTML and CSS skills. It includes:
   - My name
@@ -114,5 +114,3 @@ This project demonstrates how to deploy a simple HTML landing page on a Linux se
 ### Acknowledgments
 
 This project was completed as part of my coursework at AltSchool Africa, demonstrating server provisioning, web server configuration, and SSL setup.
-```
-
